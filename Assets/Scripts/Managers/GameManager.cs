@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
 
     private CubeManager cubeManager;
 
+    public List<Transform> viewers=new List<Transform>();
+
     public List<GameObject> knives=new List<GameObject>();
 
     [Header("Level Properties")]
@@ -51,6 +53,14 @@ public class GameManager : MonoBehaviour
     public void UpdateHitAmountCube()
     {
         AmounOfCube=FindObjectOfType<LevelCubeAmount>().AmountOfCubeToHit;
+    }
+
+    public void PlayViewerAnimation()
+    {
+        for (int i = 0; i < viewers.Count; i++)
+        {
+            viewers[i].GetComponent<Animator>().SetTrigger("Clapp");
+        }
     }
 
     public void ResetPlayerPosition()

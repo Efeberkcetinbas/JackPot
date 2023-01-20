@@ -9,6 +9,7 @@ public class CollisionCube : Obstacleable
     private GameManager gameManager;
     private ScoreManager scoreManager;
     private CameraManager cameraManager;
+    private SoundManager soundManager;
     
     public int increaseScore;
 
@@ -18,6 +19,7 @@ public class CollisionCube : Obstacleable
         gameManager=GameManager.Instance;
         scoreManager=ScoreManager.Instance;
         cameraManager=CameraManager.Instance;
+        soundManager=SoundManager.Instance;
     }
     public CollisionCube()
     {
@@ -34,7 +36,9 @@ public class CollisionCube : Obstacleable
             DoScale();
             scoreManager.UpdateScore(increaseScore);
             cameraManager.ShakeIt();
+            soundManager.Play("Hit");
             gameManager.HitTarget++;
+            gameManager.PlayViewerAnimation();
             uIManager.UpdateProgressBar((float)gameManager.HitTarget/(float)gameManager.AmounOfCube,0.5f);
             Debug.Log("HIT THE TARGET");
 
