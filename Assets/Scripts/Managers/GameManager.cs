@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
     public void UpdateCubeManager()
     {
         cubeManager=FindObjectOfType<CubeManager>();
+        cubeManager.UpdateRandomRange();
     }
 
     public IEnumerator CallCubeManager()

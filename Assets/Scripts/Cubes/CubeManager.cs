@@ -20,6 +20,13 @@ public class CubeManager : MonoBehaviour
             index++;
             cubes[index].GetComponent<MovementCube>().Move();
         }
-        
+    }
+
+    public void UpdateRandomRange()
+    {
+        for (int i = 0; i < cubes.Count; i++)
+        {
+            cubes[i].GetComponent<CollisionCube>().UpdateRangeScore();
+        }
     }
 }
