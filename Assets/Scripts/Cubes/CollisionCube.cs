@@ -10,7 +10,7 @@ public class CollisionCube : Obstacleable
     private ScoreManager scoreManager;
     private CameraManager cameraManager;
     private SoundManager soundManager;
-    
+    private LevelManager levelManager;
     public int increaseScore;
 
     private void Start()
@@ -20,6 +20,7 @@ public class CollisionCube : Obstacleable
         scoreManager=ScoreManager.Instance;
         cameraManager=CameraManager.Instance;
         soundManager=SoundManager.Instance;
+        levelManager=LevelManager.Instance;
     }
     public CollisionCube()
     {
@@ -46,6 +47,7 @@ public class CollisionCube : Obstacleable
             if(gameManager.AmounOfCube==gameManager.HitTarget)
             {
                 gameManager.isGameEnd=true;
+                StartCoroutine(LoadNext());
                 Debug.Log("SUCCESSSS");
             }
         }
@@ -53,11 +55,18 @@ public class CollisionCube : Obstacleable
 
     private void DoScale()
     {
-        transform.DOScaleY(0.75f,0.2f).OnComplete(()=>transform.DOScaleY(0.5f,0.2f));
+        transform.DOScaleY(0.4f,0.2f).OnComplete(()=>transform.DOScaleY(0.5f,0.2f));
+    }
+
+    private IEnumerator LoadNext()
+    {
+        yield return new WaitForSeconds(1);
+        levelManager.LoadNextLevel();
+
     }
 
     public void UpdateRangeScore()
     {
-        increaseScore=Random.Range(0,20);
+        increaseScore=Random.Range(1,20);
     }
 }

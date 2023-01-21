@@ -36,7 +36,7 @@ public class LevelManager : MonoBehaviour
         {
             levelIndex = 0;
             //Bunu Boyle Yapmam ama dursun
-            SceneManager.LoadScene(0);
+            //SceneManager.LoadScene(0);
         }
         PlayerPrefs.SetInt("LevelNumber", levelIndex);
        
@@ -69,10 +69,11 @@ public class LevelManager : MonoBehaviour
 
     public void LoadNextLevel()
     {
+        UIManager.Instance.StartFader();
+
         PlayerPrefs.SetInt("LevelNumber", levelIndex + 1);
         PlayerPrefs.SetInt("RealLevel", PlayerPrefs.GetInt("RealLevel", 0) + 1);
         LoadLevel();
-        //UIManager.Instance.StartFader();
     }
 
     public void RestartLevel()

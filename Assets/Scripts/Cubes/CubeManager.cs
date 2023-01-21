@@ -10,6 +10,12 @@ public class CubeManager : MonoBehaviour
 
     private void Start()
     {
+        StartCoroutine(FirstMove());
+    }
+
+    private IEnumerator FirstMove()
+    {
+        yield return new WaitForSeconds(2.5f);
         cubes[0].GetComponent<MovementCube>().Move();
     }
 
